@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Demo de Inventario Cocina: stock por piso, avisos de reposición e historial." />
+        <meta name="robots" content="noindex, nofollow" />
+
+        <meta name="theme-color" content="#17201C" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Inventario Demo" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+        <!-- Aplica el tema antes de pintar para evitar el destello blanco en modo oscuro. -->
+        <script>
+            (function () {
+                var preferencia = null;
+                try {
+                    preferencia = localStorage.getItem('appearance');
+                } catch (e) {}
+                var oscuro = preferencia === 'dark' || ((!preferencia || preferencia === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.documentElement.classList.toggle('dark', oscuro);
+            })();
+        </script>
+
+        <title>Inventario Cocina (Demo)</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="font-sans antialiased">
+        <div id="app"></div>
+        <script type="module" src="/resources/js/app.tsx"></script>
+    </body>
+</html>

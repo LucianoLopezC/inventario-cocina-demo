@@ -1,0 +1,269 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-sans:
+        'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Titulos: Bricolage Grotesque. Etiquetas y cifras: JetBrains Mono. */
+    --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --color-tinta: var(--tinta);
+    --color-acento: var(--acento);
+    --color-acento-oscuro: var(--acento-oscuro);
+    --color-brasa: var(--brasa);
+    --color-panel: var(--panel);
+    --color-linea: var(--linea);
+    --color-campo: var(--campo);
+
+    /* Estados: color de barra / texto, y fondo + texto de la etiqueta */
+    --color-estado-bien: var(--estado-bien);
+    --color-estado-bajo: var(--estado-bajo);
+    --color-estado-agotado: var(--estado-agotado);
+    --color-etiqueta-bien: var(--etiqueta-bien);
+    --color-etiqueta-bien-texto: var(--etiqueta-bien-texto);
+    --color-etiqueta-bajo: var(--etiqueta-bajo);
+    --color-etiqueta-bajo-texto: var(--etiqueta-bajo-texto);
+    --color-etiqueta-agotado: var(--etiqueta-agotado);
+    --color-etiqueta-agotado-texto: var(--etiqueta-agotado-texto);
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-tarjeta: 14px;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar-background);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+/*
+  Paleta: fondo salvia, tinta verde casi negra y acento rojo tomate.
+*/
+:root {
+    --tinta: #17201c;
+    --acento: #b5381b;
+    --acento-oscuro: #8e2a12;
+    --brasa: #e2643f;
+    --panel: #fbfbf8;
+    --linea: #e1e5e3;
+    --campo: #f4f6f5;
+
+    --estado-bien: #2f6b4f;
+    --estado-bajo: #8a5a00;
+    --estado-agotado: #b5381b;
+    --etiqueta-bien: #dce9e1;
+    --etiqueta-bien-texto: #1f4d37;
+    --etiqueta-bajo: #f3e2bf;
+    --etiqueta-bajo-texto: #5e3d00;
+    --etiqueta-agotado: #b5381b;
+    --etiqueta-agotado-texto: #ffffff;
+
+    --background: #e7eae8;
+    --foreground: #17201c;
+    --card: #ffffff;
+    --card-foreground: #17201c;
+    --popover: #ffffff;
+    --popover-foreground: #17201c;
+    --primary: #b5381b;
+    --primary-foreground: #ffffff;
+    --secondary: #17201c;
+    --secondary-foreground: #ffffff;
+    --muted: #f4f6f5;
+    --muted-foreground: #56625c;
+    --accent: #f4f6f5;
+    --accent-foreground: #17201c;
+    --destructive: #b5381b;
+    --destructive-foreground: #ffffff;
+    --border: #cdd3d0;
+    --input: #9aa59f;
+    --ring: #17201c;
+    --chart-1: #b5381b;
+    --chart-2: #2f6b4f;
+    --chart-3: #56625c;
+    --chart-4: #8a5a00;
+    --chart-5: #e2643f;
+    --radius: 0.625rem;
+
+    --sidebar-background: #17201c;
+    --sidebar-foreground: #b9c2bd;
+    --sidebar-primary: #e2643f;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #24302b;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #2c3833;
+    --sidebar-ring: #e2643f;
+}
+
+.dark {
+    --tinta: #0c110f;
+    --acento: #e2643f;
+    --acento-oscuro: #f08a6a;
+    --brasa: #e2643f;
+    --panel: #18211d;
+    --linea: #26312c;
+    --campo: #1d2722;
+
+    --estado-bien: #6fbf95;
+    --estado-bajo: #e3ad4a;
+    --estado-agotado: #f07a5a;
+    --etiqueta-bien: #1f3d2f;
+    --etiqueta-bien-texto: #b7e3c9;
+    --etiqueta-bajo: #4a3708;
+    --etiqueta-bajo-texto: #f6d899;
+    --etiqueta-agotado: #e2643f;
+    --etiqueta-agotado-texto: #10140f;
+
+    --background: #101613;
+    --foreground: #e7eae8;
+    --card: #161e1a;
+    --card-foreground: #e7eae8;
+    --popover: #161e1a;
+    --popover-foreground: #e7eae8;
+    --primary: #e2643f;
+    --primary-foreground: #10140f;
+    --secondary: #e7eae8;
+    --secondary-foreground: #17201c;
+    --muted: #1d2722;
+    --muted-foreground: #9aa59f;
+    --accent: #1d2722;
+    --accent-foreground: #e7eae8;
+    --destructive: #f07a5a;
+    --destructive-foreground: #10140f;
+    --border: #2c3833;
+    --input: #4a5650;
+    --ring: #e7eae8;
+    --chart-1: #e2643f;
+    --chart-2: #6fbf95;
+    --chart-3: #9aa59f;
+    --chart-4: #e3ad4a;
+    --chart-5: #f08a6a;
+
+    --sidebar-background: #0c110f;
+    --sidebar-foreground: #b9c2bd;
+    --sidebar-primary: #e2643f;
+    --sidebar-primary-foreground: #10140f;
+    --sidebar-accent: #1d2722;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #26312c;
+    --sidebar-ring: #e2643f;
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-display);
+    }
+}
+
+/* Etiqueta en mono mayuscula: "BODEGA Y CAMARAS", encabezados de tabla, fecha. */
+@utility etiqueta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+/* Tarjeta blanca con borde suave y esquinas de 14px. */
+@utility tarjeta {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+/* Titulo grande de pagina (mas chico en celulares para no partir palabras). */
+@utility titulo-pagina {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: -0.035em;
+    line-height: 1;
+
+    @media (width >= 40rem) {
+        font-size: 44px;
+    }
+}
+
+/* Agranda el area tactil de un enlace de texto a ~44px sin cambiar como se ve. */
+@utility toque {
+    display: inline-block;
+    padding-block: 0.75rem;
+    margin-block: -0.75rem;
+}
+
+/* Titulo de seccion dentro de una tarjeta. */
+@utility titulo-seccion {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Inventario Cocina (Demo)",
+    "short_name": "Inventario",
+    "description": "Inventario de la cocina: stock, avisos de reposición e historial.",
+    "lang": "es",
+    "start_url": "/dashboard",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "any",
+    "background_color": "#17201C",
+    "theme_color": "#17201C",
+    "icons": [
+        { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+        { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    ]
+}

@@ -361,14 +361,17 @@ export class Servidor {
 
         // ---- Invitados
         if (ruta === '/login') {
-            if (this.usuario()) throw new Redireccion('/dashboard');
+            // A diferencia de la app real, entrar con otra cuenta estando conectado cambia de
+            // cuenta: en la demo se vuelve atras al login para probar el otro rol.
+            if (m === 'POST') return this.iniciarSesion(pet);
+            // Con errores (clave mala al cambiar de cuenta) se queda en el login para mostrarlos.
+            if (this.usuario() && !flash.errors) throw new Redireccion('/dashboard');
             if (m === 'GET') {
                 return render('auth/login', {
                     status: flash.status ?? null,
                     cuentasDemo: CUENTAS_DEMO.map(({ rol, descripcion, email, password }) => ({ rol, descripcion, email, password })),
                 });
             }
-            if (m === 'POST') return this.iniciarSesion(pet);
         }
 
         // ---- Todo lo demas exige sesion
@@ -595,7 +598,9 @@ export class Servidor {
         const u = this.db.usuarios.find((x) => x.email === email && x.password === texto(pet.cuerpo.password) && x.activo);
         if (!u) throw new Validacion({ email: 'Estas credenciales no coinciden con nuestros registros.' });
 
-        this.db.sesion = { userId: u.id, claveConfirmadaAt: null, intended: this.db.sesion.intended };
+        // Si cambia de cuenta, la pagina pendiente era de la cuenta anterior: se descarta.
+        const intended = this.db.sesion.userId ? null : this.db.sesion.intended;
+        this.db.sesion = { userId: u.id, claveConfirmadaAt: null, intended };
         u.ultimo_acceso_at = ahora();
 
         throw new Redireccion(this.tomarIntended('/dashboard'));
